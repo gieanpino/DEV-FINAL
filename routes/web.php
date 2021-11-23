@@ -41,9 +41,11 @@ Auth::routes();
 Route::get('/registrar', [App\Http\Controllers\UserController::class, 'create'])->name('registrar');
 Route::post('/users', [App\Http\Controllers\UserController::class, 'store'])->name('users.store');
 Route::get('/searchUser', [App\Http\Controllers\UserController::class,'search'])->name('searchUser');
-Route::get('/search', [App\Http\Controllers\UserController::class, 'searchuser'])->name('search');
+Route::get('/search', [App\Http\Controllers\UserController::class, 'searchUser'])->name('users.search');
+Route::get('/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('users.edit');
 Route::delete('/Eliminar/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
-Route::put('/User/{user}/Update', [App\Http\Controllers\UserController::class, 'update'])->name('users.update');
+Route::get('/edit/{user}', [App\Http\Controllers\UserController::class, 'updateUser'])->name('users.update');
+Route::get('/editUser/{user}', [App\Http\Controllers\UserController::class, 'update'])->name('update');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
