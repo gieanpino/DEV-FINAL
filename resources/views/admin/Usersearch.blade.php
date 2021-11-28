@@ -3,7 +3,8 @@
 
        
 <div class="row justify-content-center ">
-    <form action="{{route('users.search')}}" method="get">
+    <!-- <form action="{{route('users.search')}}" method="get">   -->
+    <form>
     <div class="row align-items-center m-5">
             <div class="col-auto">
                 <label for="inputPassword6" class="col-form-label">Usuario</label>

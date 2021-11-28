@@ -32,26 +32,20 @@ class UserController extends Controller
    {
       $texto=trim($request->get('texto'));
       $users=DB::table('users')->select('id','name','email','apellido','cedula','usuario','telefono','celular','direccion','rol_id')
-      ->where('name','LIKE',"%".$texto."%")
-      ->orwhere('cedula','LIKE',"%".$texto."%")
-      ->orderBy('name','asc')
-      ->paginate(10);
+      ->where('name','LIKE',"%".$texto."%");
       foreach($users as $user){
-        print_r($user->id);
-      //   print_r($user->email);
-        print_r($user->usuario);
+        print_r($user->id
+      );
       }
-      return view('admin.Usersearch',['users'=>$users]);
+      return view('admin.Usersearch')->with('users',$users);
       
    }
-
    public function destroy($id){
       
        DB::table('users')->delete($id);
        return back()->with('succes','se ha eiminadodo el user');
       
    }
-
    public function edit(){
          
       return view('admin.Prueba');

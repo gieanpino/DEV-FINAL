@@ -24,17 +24,16 @@
                     </li>
                     
                     <li class="nav-item">
-                        <a class="nav-link"href="{{ url('/Formularios') }}">Formularios</a>
+                        <a class="nav-link"href="{{ url('/Encargado') }}">Encargados</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ url('/Reportes') }}">Reportes</a>
+                        <a  class="nav-link"href="#" >Aliados</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/Documentacion') }}">Documentacion</a>
+                        <a class="nav-link active" aria-current="page" href="#">Reportes</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="http://127.0.0.1:8000/logout" >Salir</a>
-                    </li>
+                    
+                    
                 </ul>
         </div>
 </div>

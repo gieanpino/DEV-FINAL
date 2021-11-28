@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Empresa;
+use App\Models\Empresas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
-class SgsstController extends Controller
+class EmpresaController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('EsSgsst',['only'=> ['index']]);
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,28 +17,9 @@ class SgsstController extends Controller
      */
     public function index()
     {
-        return view('sgsst.sgsst');
-    }
-    public function Formularios()
-    {
-        return view('sgsst.Formularios');
-    }
-    public function Empresa()
-    {
-        return view('sgsst.Empresa');
-    }
-    public function Reportes()
-    {
-        return view('sgsst.Reportes');
-    }
-
-    public function Documentacion()
-    {
-        return view('sgsst.Documentacion');
-    }
-    public function Archivos()
-    {
-        return view('sgsst.Documentacion');
+         $empresas= Empresas::all();
+         return view('sgsst.Empresas.index')->with('empresas',$empresas);
+        
     }
 
     /**
@@ -49,7 +29,11 @@ class SgsstController extends Controller
      */
     public function create()
     {
-        
+        return view('sgsst.Empresas.crear');
+    }
+    public function adjuntos()
+    {
+        return view('sgsst.Empresas.Adjuntos');
     }
 
     /**
@@ -60,9 +44,9 @@ class SgsstController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Empresas::create($request->all());
+        return redirect()->back();
     }
-
     /**
      * Display the specified resource.
      *
@@ -71,7 +55,8 @@ class SgsstController extends Controller
      */
     public function show($id)
     {
-        //
+        
+        
     }
 
     /**
@@ -82,7 +67,8 @@ class SgsstController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        
     }
 
     /**
@@ -92,10 +78,22 @@ class SgsstController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateEmpresa(Request $request,Empresas $empresa)
     {
-        //
+        
+         return view('sgsst.Empresas.edit',['empresa'=>$empresa]);
+       
     }
+    public function update(Request $request,Empresas $empresa){
+   
+        $request->merge([
+           'password'=>Hash::make($request->input('password'))
+        ]);
+  
+        $empresa->update($request->all());
+        return view('sgsst.Empresas.edit',['empresa'=>$empresa]);
+     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -105,6 +103,7 @@ class SgsstController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('empresas')->delete($id);
+        return back()->with('succes','se ha eiminadodo el user');
     }
 }

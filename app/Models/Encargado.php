@@ -13,7 +13,7 @@ class Encargado extends Model
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
-        'name','cedula','email','password','usuario','telefono','rol_id',
+        'Id','Nonbre','cedula','Nivel','empresa','hv','diploma','certificadoCusro','certificadoSeccional',
     ];
 
     protected $hidden = [
