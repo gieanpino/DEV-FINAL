@@ -2,118 +2,108 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Empresa;
+use App\Models\Empresas;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class EmpresaController extends Controller
 {
-    public function index(){
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+         $empresas= Empresas::all();
+         return view('sgsst.Empresas.index')->with('empresas',$empresas);
 
-        $empresa = Empresa::get();
+    }
 
-        //dd($empresa);
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('sgsst.Empresas.crear');
+    }
+    public function adjuntos()
+    {
+        return view('sgsst.Empresas.Adjuntos');
+    }
 
-        return view('empresa.index', [
-            'empresa' => $empresa,
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        Empresas::create($request->all());
+        return redirect()->back();
+    }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+
+
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+
+
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateEmpresa(Request $request,Empresas $empresa)
+    {
+
+         return view('sgsst.Empresas.edit',['empresa'=>$empresa]);
+
+    }
+    public function update(Request $request,Empresas $empresa){
+
+        $request->merge([
+           'password'=>Hash::make($request->input('password'))
         ]);
-        }
 
-        public function create(){
-        return view('empresa.new_empresa');
-        }
-
-        public function show($id){
-
-        }
-
-        public function edit($id){
-
-            /*$empresa = empresa::findOrFail($id);
-            $empresa = empresa::where('id', $id)->first();
-
-            return view('empresa.edit_empresa', [
-                'empresa' => $empresa,
-            ]);*/
-        }
-
-        public function store(Request $request){
-            /*
-            $request->validate(
-                [
-                    'nombre_empresa'=>'required|max:500',
-                    'telefono_empresa'=>'required|numeric|unique:empresa,telefono',
-                    'direccion_empresa'=>'required|max:500',
-                    'nit_empresa'=>'required|max:500',
-
-                ]
-                ,
-                [
-                    'nombre_empresa.required' => 'El nombre de la empresa es requerido',
-                    'telefono_empresa.required' => 'El télefono de la empresa es requerido',
-                    'telefono_empresa.numeric' => 'El télefono debe ser un dato númerico',
-                    'telefono_empresa.unique' => 'El télefono ya se encuentra registrado',
-                    'direccion_empresa.required' => 'La dirección de la empresa es requerida',
-                    'nit_empresa.required' => 'El NIT de la empresa es requerido',
+        $empresa->update($request->all());
+        return view('sgsst.Empresas.edit',['empresa'=>$empresa]);
+     }
 
 
-                ]
-                );
-
-
-            $empresa = new empresa;
-            $empresa->nombre_empresa = $request->nombre_empresa;
-            $empresa->direccion = $request->direccion_empresa;
-            $empresa->nit = $request->nit_empresa;
-            $empresa->telefono = $request->telefono_empresa;
-
-            $empresa->save();
-
-            return back()->with('message','La empresa fue agregada correctamente');
-            */
-
-
-
-        }
-
-        public function update(Request $request, $id){
-
-            /*
-            $request->validate(
-                [
-                    'nombre_empresa'=>'required|max:500',
-                    'telefono_empresa'=>'required|numeric',
-                    'direccion_empresa'=>'required|max:500',
-                    'nit_empresa'=>'required|max:500',
-
-                ]
-                ,
-                [
-                    'nombre_empresa.required' => 'El nombre de la empresa es requerido',
-                    'telefono_empresa.required' => 'El télefono de la empresa es requerido',
-                    'telefono_empresa.numeric' => 'El télefono debe ser un dato númerico',
-                    'direccion_empresa.required' => 'La dirección de la empresa es requerida',
-                    'nit_empresa.required' => 'El NIT de la empresa es requerido',
-
-
-                ]
-                );
-
-
-            $empresa = empresa::findOrFail($id);
-            $empresa->nombre_empresa = $request->nombre_empresa;
-            $empresa->direccion = $request->direccion_empresa;
-            $empresa->nit = $request->nit_empresa;
-            $empresa->telefono = $request->telefono_empresa;
-            $empresa->save();
-            return back()->with('message','La empresa fue actualizada correctamente');
-            */
-        }
-
-        public function delete($id){
-
-        Empresa::where('id', $id)->delete();
-        return back();
-
-        }
-
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        DB::table('empresas')->delete($id);
+        return back()->with('succes','se ha eiminadodo el user');
+    }
 }
