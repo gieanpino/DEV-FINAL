@@ -37,6 +37,10 @@ class SgsstController extends Controller
     {
         return view('sgsst.Documentacion');
     }
+    public function Archivos()
+    {
+        return view('sgsst.Documentacion');
+    }
 
     /**
      * Show the form for creating a new resource.

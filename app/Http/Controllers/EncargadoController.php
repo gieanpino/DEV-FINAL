@@ -10,8 +10,17 @@ use Illuminate\Support\Facades\Hash;
 
 class EncargadoController extends Controller
 {
-   public function create( Request $request){
-       return view('admin.createUser');
+   public function index()
+   {
+      {
+         // $encargados= encargado::all();
+         // return view('sgsst.Encargado.index')->with('encargados', $encargados);
+         return view('sgsst.Encargado.index');
+    }
+   }
+   public function create( Request $request)
+   {
+       return view('sgsst.Encargado.crear');
    }
    public function store(Request $request)
    {
