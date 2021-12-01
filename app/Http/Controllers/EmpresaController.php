@@ -19,7 +19,7 @@ class EmpresaController extends Controller
     {
          $empresas= Empresas::all();
          return view('sgsst.Empresas.index')->with('empresas',$empresas);
-        
+
     }
 
     /**
@@ -55,8 +55,8 @@ class EmpresaController extends Controller
      */
     public function show($id)
     {
-        
-        
+
+
     }
     public function cargaraEncargados()
     {
@@ -73,7 +73,7 @@ class EmpresaController extends Controller
     public function edit($id)
     {
 
-        
+
     }
 
     /**
@@ -85,16 +85,16 @@ class EmpresaController extends Controller
      */
     public function updateEmpresa(Request $request,Empresas $empresa)
     {
-        
+
          return view('sgsst.Empresas.edit',['empresa'=>$empresa]);
-       
+
     }
     public function update(Request $request,Empresas $empresa){
-   
+
         $request->merge([
            'password'=>Hash::make($request->input('password'))
         ]);
-  
+
         $empresa->update($request->all());
         return view('sgsst.Empresas.edit',['empresa'=>$empresa]);
      }
