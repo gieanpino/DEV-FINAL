@@ -5,11 +5,10 @@
 <h1>Encargado</h1>
 <div class="row justify-content-center ">
     <button type="button" class="btn btn-secondary btn-lg m-2">
-    <a class="nav-link active" aria-current="page"  href="{{ url('/createEncargado') }}">Nuevo Encargado</a>
+    <a class="nav-link active" aria-current="page"  href="{{ url('/traerEmpresas') }}">Nuevo Encargado</a>
     </button>
-   
-    
 </div>  
+
 <div class="card m-2">
     <div class="card-header text-center bg-primary">
        <h3>Encargados</h3>
@@ -31,6 +30,7 @@
                     <th class="col">Tipo Empresa</th>
                 </thead>
                 <tbody>
+                
                      
                 </tbody>
             </table>

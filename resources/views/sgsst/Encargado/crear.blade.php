@@ -11,128 +11,91 @@
 </div>
 <h1>Crear Encargado</h1>
 
-<form class="m-sm-4 p-sm-4" method="POST" action="{{route('EmpresaStore')}}" >
+<form class="" method="POST" action="{{route('EncargadoStore')}}" >
         @csrf
-        <div class="form-group row">
-                                        <div class="col-md-4">
-                                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="" required autocomplete="name" placeholder="Nombre">
-
-                                                @error('name')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                        </div>
-                                        <div class="col-md-4">
-                                                <input id="nit" type="text" class="form-control @error('nit') is-invalid @enderror" name="nit" required autocomplete="nit" placeholder="NIT">
-
-                                                @error('apellido')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                        </div>
-                                        <div class="col-md-4">
-                                                <input id="direccion" type="text" class="form-control @error('direccion') is-invalid @enderror" name="direccion" value="" required autocomplete="direccion" placeholder="Direccion">
-
-                                                @error('cedula')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                        </div>
-        </div>
-        <div class="form-group row">
-                                        <div class="col-md-4">
-                                            <select class="mb-3 w-full" style="height: 100%; width: 100%;" name="actividadEconomica" id="actividadEconomica"  required autofocus>
-                                                <option value="1">Educacion</option>
-                                                <option value="2">Comercio</option>
-                                                <option value="3">Servicio</option>
-                                                <option value="4">Operacion</option>
-                                                <option value="5">Produccion</option>
-                                            </select>
+        <div class=" row m-4">
+            <div class="col-4">
+                 <select class="mb-6 w-full" style="height: 100%; width: 100%;" name="empresa" id="empresa"  required autofocus>
+                 @foreach($empresas as $emp)  
+                 <option value="{{$emp->id}}">{{$emp->id.":"}}{{$emp->name}}</option>
+                 @endforeach   
+                 </select>
                         
-                                            @error('actividadEconomica')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-4">
-                                            <input id="nivelRiesgo" type="text" class="form-control @error('nivelRiesgo') is-invalid @enderror" name="nivelRiesgo" value="" required autocomplete="nivelRiesgo" placeholder="Nivel Riesgo">
+                 @error('empresa')
+                     <span class="invalid-feedback" role="alert">
+                         <strong>{{ $message }}</strong>
+                     </span>
+                 @enderror
+            </div>
+            <div class="col-4">
+                <input id="cedula" type="text" class="form-control @error('cedula') is-invalid @enderror" name="cedula" value="" required autocomplete="cedula" placeholder="cedula">
+                @error('cedula')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+            <div class="col-4">
+                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="" required autocomplete="name" placeholder="Nombre">
 
-                                            @error('nivelRiesgo')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-4">
-                                            <input id="cantidadEmpleados" type="text" class="form-control @error('cantidadEmpleados') is-invalid @enderror" name="cantidadEmpleados" value="" required autocomplete="cantidadEmpleados" placeholder="Cantidad Empleados">
+                 @error('name')
+                     <span class="invalid-feedback" role="alert">
+                         <strong>{{ $message }}</strong>
+                     </span>
+                 @enderror
+            </div>
+        </div>
+        <div class=" row m-4">
+            <div class="col-4">
+                 <input id="nivelEstudio" type="text" class="form-control @error('nivelEstudio') is-invalid @enderror" name="nivelEstudio" value="" required autocomple="nivelEstudio" placeholder="Nivel Estudio">
 
-                                            @error('cantidadEmpleados')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-        </div>
-        <div class="form-group row">
-                                        <div class="col-md-6">
-                                            <select class="mb-3 w-full" style="height: 100%; width: 100%;" name="naturalezaJuridica" id="naturalezaJuridica"  required autofocus>
-                                                <option value="1">Natural</option>
-                                                <option value="2">Juridica</option>
-                                            </select>
-                        
-                                            @error('naturalezaJuridica')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="" required autocomplete="email" placeholder="Correo">
+                 @error('nivelEstudio')
+                     <span class="invalid-feedback" role="alert">
+                         <strong>{{ $message }}</strong>
+                     </span>
+                 @enderror
+            </div>
+            <div class="col-4">
+                <input id="hojaVida" type="text" class="form-control @error('hojaVida') is-invalid @enderror" name="hojaVida" value="" required autocomplete="hojaVida" placeholder="hojaVida">
 
-                                            @error('email')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                        
-        </div>
-        <div class="form-group row ">
-                                        <div class="col-md-6">
-                                            <input id="telefono" type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" value="" required autocomplete="telefono" placeholder="Telefono">
-                                            <input id="latitud" type="hidden" class="form-control @error('latitud') is-invalid @enderror" name="latitud" value="1110101010101010101">
-                                            <input id="longitud" type="hidden" class="form-control @error('telefono') is-invalid @enderror" name="longitud" value="1010101010101010">
+                @error('hojaVida')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+            <div class="col-4">
+                 <input id="PDFcertificadohoras" type="text" class="form-control @error('PDFcertificadohoras') is-invalid @enderror" name="PDFcertificadohoras" value="" required autocomplete="PDFcertificadohoras" placeholder="PDFcertificadohoras">
 
-                                            @error('telefono')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-6">
-                                            <select class="mb-3 w-full" style="height: 100%; width: 100%;" name="tipoEmpresa" id="tipoEmpresa"  required autofocus>
-                                                <option value="2">SAS</option>
-                                                <option value="3">LTDA</option>
-                                                <option value="4">S.en C.</option>
-                                                <option value="5">S.C.A.</option>
-                                                <option value="6">S. Colectiva</option>
-                                                <option value="1">Natural</option>
-                                            </select>
-                        
-                                            @error('naturalezaJuridica')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
+                 @error('PDFcertificadohoras')
+                     <span class="invalid-feedback" role="alert">
+                         <strong>{{ $message }}</strong>
+                     </span>
+                 @enderror
+            </div>
         </div>
-        <div class="col text-center m-3">
-            <button class="btn btn-primary col-6 " type="submit"> Guardar</button>
+        <div class=" row m-4">
+            <div class="col-4">
+                 <input id="PDFcertificadosalud" type="text" class="form-control @error('PDFcertificadosalud') is-invalid @enderror" name="PDFcertificadosalud" value="" required autocomplete="PDFcertificadosalud" placeholder="PDFcertificadosalud">
+
+                 @error('PDFcertificadosalud')
+                     <span class="invalid-feedback" role="alert">
+                         <strong>{{ $message }}</strong>
+                     </span>
+                 @enderror
+            </div>
+            <div class="col-4">
+                <input id="PDFdiploma" type="text" class="form-control @error('PDFdiploma') is-invalid @enderror" name="PDFdiploma" value="" required autocomplete="PDFdiploma" placeholder="PDF diploma">
+
+                @error('PDFdiploma')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+           
         </div>
-                            
+        <button type="sumit" class="btn btn-primary btn-lg">Crear</button>
 </form>
                        
 

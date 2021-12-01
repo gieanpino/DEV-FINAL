@@ -7,26 +7,35 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+
 class Encargado extends Model
 {
 
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $fillable = [
-        'Id','Nonbre','cedula','Nivel','empresa','hv','diploma','certificadoCusro','certificadoSeccional',
-    ];
-
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
     /**
-     * The attributes that should be cast.
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
+
+    protected $fillable = [
+        'name',
+        'cedula',
+        'nivelEstudio',
+        'hojaVida',
+        'PDFdiploma',
+        'PDFcertificadohoras',
+        'PDFcertificadosalud',
+        'Empresa',
+    ];
+   /**
+     * The attributes that should be hidden for serialization.
      *
      * @var array
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
+    protected $hidden = [
+        'password',
+        'remember_token',
     ];
 }

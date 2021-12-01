@@ -43,7 +43,7 @@ class UserController extends Controller
    public function destroy($id){
       
        DB::table('users')->delete($id);
-       return back()->with('succes','se ha eiminadodo el user');
+       return redirect()->route('searchUser');
       
    }
    public function edit(){

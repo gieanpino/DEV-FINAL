@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Hash;
 
 class EncargadoController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
    public function index()
    {
       {
@@ -18,19 +23,27 @@ class EncargadoController extends Controller
          return view('sgsst.Encargado.index');
     }
    }
+      /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
    public function create( Request $request)
    {
        return view('sgsst.Encargado.crear');
    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
    public function store(Request $request)
-   {
-         Encargado::create($request->only('name','cedula','email','usuario','telefono','rol_id')
-      +[
-         'password'=>bcrypt($request->input('password')),
-      ]
-      );
-         return redirect()->back();
-   }
+    {
+        Encargado::create($request->all());
+        //return view('sgsst.Encargado.index');
+    }
 
    public function search(Request $request)
    {

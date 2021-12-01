@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Empresa;
+
 use App\Models\Empresas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -58,7 +58,12 @@ class EmpresaController extends Controller
         
         
     }
-
+    public function cargaraEncargados()
+    {
+        $empresas= Empresas::all();
+        return view('sgsst.Encargado.crear')->with('empresas',$empresas);   
+        
+    }
     /**
      * Show the form for editing the specified resource.
      *

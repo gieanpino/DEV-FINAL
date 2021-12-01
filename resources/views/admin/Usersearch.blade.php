@@ -71,7 +71,7 @@
                     </form> 
                     </th>
                  <th>
-                   <form method="post" action="{{route('users.destroy',$user->id)}}" >
+                 <form method="post" action="{{route('User.destroy',$user->id)}}">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="bg-danger ">
@@ -81,9 +81,8 @@
                                 </svg>
                             </button>
                             
-                    </form>
-                        
-                    </th>
+                </form>
+                </th>
                 </tr> 
                 @endforeach          
                 </tbody>
